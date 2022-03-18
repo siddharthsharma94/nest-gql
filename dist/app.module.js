@@ -13,6 +13,7 @@ const app_service_1 = require("./app.service");
 const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
 const user_resolver_1 = require("./user/user.resolver");
+const apollo_server_core_1 = require("apollo-server-core");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -20,7 +21,8 @@ AppModule = __decorate([
         imports: [
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
-                playground: true,
+                playground: false,
+                plugins: [(0, apollo_server_core_1.ApolloServerPluginLandingPageLocalDefault)()],
                 autoSchemaFile: 'schema.gql',
             }),
         ],
