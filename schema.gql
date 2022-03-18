@@ -1,0 +1,103 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Posts {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  content: String!
+  createdBy: User!
+  userId: Int!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  Posts: [Posts!]
+}
+
+type Query {
+  getUsers: [User!]!
+}
+
+type Mutation {
+  createOneUser(data: UserCreateInput!): User!
+  createPost(data: PostsCreateInput!): Posts!
+}
+
+input UserCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  name: String
+  Posts: PostsCreateNestedManyWithoutCreatedByInput
+}
+
+input PostsCreateNestedManyWithoutCreatedByInput {
+  create: [PostsCreateWithoutCreatedByInput!]
+  connectOrCreate: [PostsCreateOrConnectWithoutCreatedByInput!]
+  createMany: PostsCreateManyCreatedByInputEnvelope
+  connect: [PostsWhereUniqueInput!]
+}
+
+input PostsCreateWithoutCreatedByInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  content: String!
+}
+
+input PostsCreateOrConnectWithoutCreatedByInput {
+  where: PostsWhereUniqueInput!
+  create: PostsCreateWithoutCreatedByInput!
+}
+
+input PostsWhereUniqueInput {
+  id: Int
+}
+
+input PostsCreateManyCreatedByInputEnvelope {
+  data: [PostsCreateManyCreatedByInput!]!
+  skipDuplicates: Boolean
+}
+
+input PostsCreateManyCreatedByInput {
+  id: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  content: String!
+}
+
+input PostsCreateInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  content: String!
+  createdBy: UserCreateNestedOneWithoutPostsInput!
+}
+
+input UserCreateNestedOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutPostsInput {
+  createdAt: DateTime
+  updatedAt: DateTime
+  name: String
+}
+
+input UserCreateOrConnectWithoutPostsInput {
+  where: UserWhereUniqueInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserWhereUniqueInput {
+  id: Int
+}
