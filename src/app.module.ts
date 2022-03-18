@@ -10,6 +10,7 @@ import { UserResolver } from './user/user.resolver';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      playground: true,
       autoSchemaFile: 'schema.gql',
     }),
   ],

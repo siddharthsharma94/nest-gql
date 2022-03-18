@@ -20,6 +20,7 @@ AppModule = __decorate([
         imports: [
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
+                playground: true,
                 autoSchemaFile: 'schema.gql',
             }),
         ],
